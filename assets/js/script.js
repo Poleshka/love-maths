@@ -35,11 +35,19 @@ function runGame(gameType) {
 }
 
 function checkAnswer() {
-let userAnswer=parseInt(document.getElementById("answer-box").value);
-let calculatedAnswer= calculateCorrectAnswer();
-let isCorrect=userAnswer===calculatedAnswer[0];
+      
+    let userAnswer=parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer =calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
 
-if(isCorrect)
+    if(isCorrect){
+        alert("Hey! You got it right! :");
+        incrementScore();
+    }else {
+       alert(`Awwwwwww....you answered ${userAnswer}.The correct answer was ${calculatedAnswer[0]}!`) ;
+       incrementWrongAnswer();
+    }
+    runGame(calculatedAnswer[1]);
 }
 /**
  * Gets the operands(the numbers)and the operator(plus,minus etc.)
@@ -61,10 +69,14 @@ function calculateCorrectAnswer() {
 
 function incrementScore() {
 
+    let oldScore=parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText= ++oldScore;
 }
 
 function incrementWrongAnswer() {
 
+    let oldScore=parseInt(document.getElementById("incorrect").innerText);   
+    document.getElementById("incorrect").innerText= ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
